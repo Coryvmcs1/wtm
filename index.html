@@ -1,23 +1,30 @@
 <html lang="en">
   <head>
 
-
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/uniform.min.default.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="dump"></div>
-    <table>
+    <table class="table" id="stats">
     </table>
 
 <script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script>
 
   var altpoolURL = "https://etc.altpool.net/api/stats";
 
-    $.get(altpoolURL)
-       .then(function(res){
-          console.log(res);
-          $("#dump").html(res);
-        });
+  var table = document.getElementById("stats");
+
+  $.get(altpoolURL).then(function(res){
+      console.log(res);
+      var header = table.insertRow(0);
+      var row = table.insertRow(1);
+      Object.keys(res).map(function(k) {
+        header.insertCell(0).innerHTML = k;
+        row.insertCell(0).innerHTML = JSON.stringify(res[k]);
+      })
+    });
 </script>
   </body>
 </html>
