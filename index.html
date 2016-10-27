@@ -1,0 +1,23 @@
+<html lang="en">
+  <head>
+
+
+  </head>
+  <body>
+    <div id="dump"></div>
+    <table>
+    </table>
+
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script>
+
+  var altpoolURL = "https://etc.altpool.net/api/stats";
+
+    $.get(altpoolURL)
+       .then(function(res){
+          console.log(res);
+          $("#dump").html(res);
+        });
+</script>
+  </body>
+</html>
